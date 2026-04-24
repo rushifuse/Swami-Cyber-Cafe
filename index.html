@@ -235,7 +235,9 @@ button:hover{
 }
 
 
-
+marquee p{
+  cursor:pointer;
+}
 
   </style>
 </head>
@@ -253,7 +255,7 @@ button:hover{
   <h2>Latest Updates</h2>
 
  <div class="notice-board">
-       <div class="notice-slide active">
+       <div class="notice-slide id="1" active">
 
          <h4>📢 11वी (FYJC) Admission 2026</h4>
 <p>
@@ -284,7 +286,7 @@ button:hover{
 
 
    
-    <div class="notice-slide ">
+    <div class="notice-slide id="2" ">
       <h4>📢 CRPF Constable Bharti 2026</h4>
       <p> <span style="color: red;">पदाचे नाव – </span>🔹 कॉन्स्टेबल (ट्रेड्समन & टेक्निकल) – 9175 जागा<br>
 🔹 कॉन्स्टेबल (पायोनियर विंग) – 20 जागा <br>
@@ -302,7 +304,7 @@ button:hover{
      </p>
     </div>
 
-    <div class="notice-slide">
+    <div class="notice-slide  id="3"">
      <h4>📢 MPSC Group B Bharti 2026</h4>
 <p>
 <span style="color: red;">पदाचे नाव – </span><br>
@@ -343,7 +345,7 @@ button:hover{
 
   
 
-    <div class="notice-slide">
+    <div class="notice-slide id="4"">
      <h4>📢 SSB Constable Bharti 2026</h4>
 <p>
 
@@ -440,10 +442,10 @@ button:hover{
   <div class="notice-board">
 
     <marquee behavior="scroll" direction="up" scrollamount="10" onmouseover="this.stop();" onmouseout="this.start();">
-      <p>📢 11वी (FYJC) Admission 2026 </p>
-      <p>📢 MPSC मार्फत महाराष्ट्र गट-ब सेवा संयुक्त पूर्व आणि मुख्य परीक्षा 2026 </p>
-      <p>📢 केंद्रीय राखीव पोलीस दलात 9195 जागांसाठी मेगाभरती 2026 </p>
-      <p>📢सशस्त्र सीमा बलात कॉन्स्टेबल पदाच्या 827 जागांसाठी भरती 2026</p>
+      <p onclick="openSlide(1)">📢 11वी (FYJC) Admission 2026 </p>
+      <p onclick="openSlide(3)">📢 MPSC मार्फत महाराष्ट्र गट-ब सेवा संयुक्त पूर्व आणि मुख्य परीक्षा 2026 </p>
+      <p onclick="openSlide(2)">📢 केंद्रीय राखीव पोलीस दलात 9195 जागांसाठी मेगाभरती 2026 </p>
+      <p onclick="openSlide(4)">📢सशस्त्र सीमा बलात कॉन्स्टेबल पदाच्या 827 जागांसाठी भरती 2026</p>
       <p>📢 स्टाफ सिलेक्शन कमिशन मार्फत 3003 जागांसाठी भरती 2026</p>
       <p>📢 बँक ऑफ बडोदा भरती 2026 </p>
       <p>📢 भारतीय रेल्वेत असिस्टंट लोको पायलट पदाच्या 11000+ जागांसाठी भरती 2026 </p>
@@ -523,6 +525,15 @@ function nextNotice(){
 function prevNotice(){
   index = (index - 1 + slides.length) % slides.length;
   showSlide(index);
+}
+  function openSlide(i){
+  index = i;
+  showSlide(index);
+
+  // scroll to Latest Updates section
+  document.querySelector(".section").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 </script>
 </html>
