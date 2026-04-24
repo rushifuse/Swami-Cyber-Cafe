@@ -167,6 +167,17 @@
     }
 
     /* NOTICE BOARD */
+    .notice-slide{
+  display:none;
+  height:100%;
+  overflow-y:auto;   /* 👉 scroll enable */
+  padding-right:5px;
+}
+
+.notice-slide.active{
+  display:block;
+}
+
 .notice-board{
   background:#fff;
   height:200px;
@@ -224,14 +235,7 @@ button:hover{
 }
 
 
-.notice-slide::-webkit-scrollbar {
-  width: 6px;
-}
-.notice-slide::-webkit-scrollbar-thumb {
-  background: #ff6f00;
-  border-radius: 10px;
-}
-}
+
 
   </style>
 </head>
