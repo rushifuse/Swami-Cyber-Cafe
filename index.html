@@ -284,12 +284,36 @@ marquee p{
     .
     /*ChatBot sathi */
 
-    .chatbot{
+  /* Floating Button */
+.chat-toggle{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:280px;
-  font-family:Arial;
+  background:#ff6f00;
+  color:#fff;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+/* Chat Box */
+.chat-box{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  width:260px;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  display:none;
+  overflow:hidden;
   z-index:999;
 }
 
@@ -297,34 +321,36 @@ marquee p{
   background:#ff6f00;
   color:#fff;
   padding:10px;
-  cursor:pointer;
-  border-radius:10px 10px 0 0;
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
 }
 
 .chat-body{
-  display:none;
-  background:#fff;
-  height:300px;
-  border:1px solid #ccc;
-  border-top:none;
+  height:200px;
   padding:10px;
   overflow-y:auto;
+  font-size:13px;
 }
 
-#messages{
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-#messages div{
+.bot-msg{
+  background:#f1f1f1;
+  padding:6px;
+  border-radius:5px;
   margin:5px 0;
 }
 
-#userInput{
+.user-msg{
+  text-align:right;
+  margin:5px 0;
+}
+
+#chatInput{
   width:100%;
   padding:8px;
-  border:1px solid #ccc;
-  border-radius:5px;
+  border:none;
+  border-top:1px solid #ccc;
+  outline:none;
 }
 
   </style>
@@ -678,16 +704,28 @@ marquee p{
 
 
 
-<!-- Chatbot -->
-<div class="chatbot">
-  <div class="chat-header" onclick="toggleChat()">💬 Chat with us</div>
-
-  <div class="chat-body" id="chatBody">
-    <div id="messages"></div>
-
-    <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKey(event)">
-  </div>
+<!-- Chat Button -->
+<div class="chat-toggle" onclick="toggleChat()">
+  <i class="fa-solid fa-comment-dots"></i>
 </div>
+
+<!-- Chat Box -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    💬 Chat Support
+    <span onclick="toggleChat()">✖</span>
+  </div>
+
+  <div class="chat-body" id="chatMessages">
+    <div class="bot-msg">Hello 👋 Welcome to Swami Cyber Cafe!</div>
+  </div>
+
+  <input type="text" id="chatInput" placeholder="Type message..." onkeypress="sendMsg(event)">
+</div>
+
+
+
+  
 
   
 
@@ -808,38 +846,40 @@ function prevNotice(){
   });
 
 /* Chatbot*/
-   function toggleChat(){
-  let body = document.getElementById("chatBody");
-  body.style.display = body.style.display === "block" ? "none" : "block";
+function toggleChat(){
+  let box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
-function handleKey(e){
+function sendMsg(e){
   if(e.key === "Enter"){
-    let input = document.getElementById("userInput");
+    let input = document.getElementById("chatInput");
     let msg = input.value;
 
     if(msg.trim() === "") return;
 
-    let messages = document.getElementById("messages");
+    let chat = document.getElementById("chatMessages");
 
-    messages.innerHTML += "<div><b>You:</b> " + msg + "</div>";
+    chat.innerHTML += `<div class="user-msg">${msg}</div>`;
 
     let reply = getReply(msg.toLowerCase());
-    messages.innerHTML += "<div><b>Bot:</b> " + reply + "</div>";
 
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
+    setTimeout(()=>{
+      chat.innerHTML += `<div class="bot-msg">${reply}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    },500);
+
+    input.value="";
   }
 }
 
 function getReply(msg){
-  if(msg.includes("hello")) return "Hello! Swami Cyber Cafe मध्ये स्वागत आहे 😊";
-  if(msg.includes("time")) return "⏰ आम्ही सकाळी 9 ते रात्री 8 पर्यंत खुले आहोत.";
-  if(msg.includes("service")) return "👉 आम्ही Online Form, Aadhaar, PAN, Print, Recharge सेवा देतो.";
-  if(msg.includes("contact")) return "📞 8767997028 वर संपर्क करा.";
-  
-  return "कृपया अधिक माहितीसाठी WhatsApp करा.";
-} 
+  if(msg.includes("hello")) return "Hello! 👋";
+  if(msg.includes("service")) return "👉 We provide Online Form, Aadhaar, PAN, Print services.";
+  if(msg.includes("time")) return "⏰ 9 AM to 8 PM Open.";
+  if(msg.includes("contact")) return "📞 Call: 8767997028";
+
+  return "Please contact on WhatsApp 😊";
 }
 </script>
 </html>
