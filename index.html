@@ -282,6 +282,50 @@ marquee p{
   font-size:18px;
 }
     .
+    /*ChatBot sathi */
+
+    .chatbot{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:280px;
+  font-family:Arial;
+  z-index:999;
+}
+
+.chat-header{
+  background:#ff6f00;
+  color:#fff;
+  padding:10px;
+  cursor:pointer;
+  border-radius:10px 10px 0 0;
+}
+
+.chat-body{
+  display:none;
+  background:#fff;
+  height:300px;
+  border:1px solid #ccc;
+  border-top:none;
+  padding:10px;
+  overflow-y:auto;
+}
+
+#messages{
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+#messages div{
+  margin:5px 0;
+}
+
+#userInput{
+  width:100%;
+  padding:8px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
 
   </style>
 </head>
@@ -634,7 +678,16 @@ marquee p{
 
 
 
+<!-- Chatbot -->
+<div class="chatbot">
+  <div class="chat-header" onclick="toggleChat()">💬 Chat with us</div>
 
+  <div class="chat-body" id="chatBody">
+    <div id="messages"></div>
+
+    <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKey(event)">
+  </div>
+</div>
 
   
 
@@ -754,8 +807,39 @@ function prevNotice(){
     behavior: "smooth"
   });
 
+/* Chatbot*/
+   function toggleChat(){
+  let body = document.getElementById("chatBody");
+  body.style.display = body.style.display === "block" ? "none" : "block";
+}
 
-    
+function handleKey(e){
+  if(e.key === "Enter"){
+    let input = document.getElementById("userInput");
+    let msg = input.value;
+
+    if(msg.trim() === "") return;
+
+    let messages = document.getElementById("messages");
+
+    messages.innerHTML += "<div><b>You:</b> " + msg + "</div>";
+
+    let reply = getReply(msg.toLowerCase());
+    messages.innerHTML += "<div><b>Bot:</b> " + reply + "</div>";
+
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+  }
+}
+
+function getReply(msg){
+  if(msg.includes("hello")) return "Hello! Swami Cyber Cafe मध्ये स्वागत आहे 😊";
+  if(msg.includes("time")) return "⏰ आम्ही सकाळी 9 ते रात्री 8 पर्यंत खुले आहोत.";
+  if(msg.includes("service")) return "👉 आम्ही Online Form, Aadhaar, PAN, Print, Recharge सेवा देतो.";
+  if(msg.includes("contact")) return "📞 8767997028 वर संपर्क करा.";
+  
+  return "कृपया अधिक माहितीसाठी WhatsApp करा.";
+} 
 }
 </script>
 </html>
