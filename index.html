@@ -873,6 +873,39 @@ function prevNotice(){
   });
 
 /* Chatbot*/
+
+
+
+<script>
+let slides = document.querySelectorAll(".notice-slide");
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+
+function nextNotice(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevNotice(){
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+function openSlide(i){
+  index = i;
+  showSlide(index);
+
+  document.querySelector(".section").scrollIntoView({
+    behavior: "smooth"
+  });
+} // 👉 इथे function close केला
+
+/* ================= CHATBOT ================= */
+
 function toggleChat(){
   let box = document.getElementById("chatBox");
   box.style.display = box.style.display === "block" ? "none" : "block";
@@ -908,5 +941,15 @@ function getReply(msg){
 
   return "Please contact on WhatsApp 😊";
 }
+</script>
+
+
+
+
+
+
+
+
+    
 </script>
 </html>
