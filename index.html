@@ -282,76 +282,7 @@ marquee p{
   font-size:18px;
 }
     .
-    /*ChatBot sathi */
 
-  /* Floating Button */
-.chat-toggle{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#ff6f00;
-  color:#fff;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  cursor:pointer;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-  z-index:999;
-}
-
-/* Chat Box */
-.chat-box{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:260px;
-  background:#fff;
-  border-radius:10px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  display:none;
-  overflow:hidden;
-  z-index:999;
-}
-
-.chat-header{
-  background:#ff6f00;
-  color:#fff;
-  padding:10px;
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-}
-
-.chat-body{
-  height:200px;
-  padding:10px;
-  overflow-y:auto;
-  font-size:13px;
-}
-
-.bot-msg{
-  background:#f1f1f1;
-  padding:6px;
-  border-radius:5px;
-  margin:5px 0;
-}
-
-.user-msg{
-  text-align:right;
-  margin:5px 0;
-}
-
-#chatInput{
-  width:100%;
-  padding:8px;
-  border:none;
-  border-top:1px solid #ccc;
-  outline:none;
-}
 
   </style>
 </head>
@@ -730,28 +661,6 @@ marquee p{
 </section>
 
 
-
-<!-- Chat Button -->
-<div class="chat-toggle" onclick="toggleChat()">
-  <i class="fa-solid fa-comment-dots"></i>
-</div>
-
-<!-- Chat Box -->
-<div class="chat-box" id="chatBox">
-  <div class="chat-header">
-    💬 Chat Support
-    <span onclick="toggleChat()">✖</span>
-  </div>
-
-  <div class="chat-body" id="chatMessages">
-    <div class="bot-msg">Hello 👋 Welcome to Swami Cyber Cafe!</div>
-  </div>
-
-  <input type="text" id="chatInput" placeholder="Type message..." onkeypress="sendMsg(event)">
-</div>
-
-
-
   
 
   
@@ -872,71 +781,6 @@ function prevNotice(){
     behavior: "smooth"
   });
 
-/* Chatbot*/
-let slides = document.querySelectorAll(".notice-slide");
-let index = 0;
-
-function showSlide(i){
-  slides.forEach(s => s.classList.remove("active"));
-  slides[i].classList.add("active");
-}
-
-function nextNotice(){
-  index = (index + 1) % slides.length;
-  showSlide(index);
-}
-
-function prevNotice(){
-  index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
-}
-
-function openSlide(i){
-  index = i;
-  showSlide(index);
-
-  document.querySelector(".section").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-/* ================= CHATBOT ================= */
-
-function toggleChat(){
-  let box = document.getElementById("chatBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-}
-
-function sendMsg(e){
-  if(e.key === "Enter"){
-    let input = document.getElementById("chatInput");
-    let msg = input.value;
-
-    if(msg.trim() === "") return;
-
-    let chat = document.getElementById("chatMessages");
-
-    chat.innerHTML += `<div class="user-msg">${msg}</div>`;
-
-    let reply = getReply(msg.toLowerCase());
-
-    setTimeout(()=>{
-      chat.innerHTML += `<div class="bot-msg">${reply}</div>`;
-      chat.scrollTop = chat.scrollHeight;
-    },500);
-
-    input.value="";
-  }
-}
-
-function getReply(msg){
-  if(msg.includes("hello")) return "Hello! 👋";
-  if(msg.includes("service")) return "👉 We provide Online Form, Aadhaar, PAN, Print services.";
-  if(msg.includes("time")) return "⏰ 9 AM to 8 PM Open.";
-  if(msg.includes("contact")) return "📞 Call: 8767997028";
-
-  return "Please contact on WhatsApp 😊";
-}
 
     
 </script>
