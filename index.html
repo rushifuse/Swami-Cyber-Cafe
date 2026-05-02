@@ -284,8 +284,6 @@ marquee p{
     .
 
 
-/* Chat Box */
-
 /* CHAT BUTTON */
 .chat-toggle{
   position:fixed;
@@ -351,6 +349,12 @@ marquee p{
   border:none;
   border-top:1px solid #ccc;
 }
+
+
+
+
+
+    
   </style>
 </head>
 <body>
@@ -758,8 +762,9 @@ marquee p{
 
 <!-- CONTENT -->
 
+
 <!-- CHAT BUTTON -->
-<div class="chat-toggle" onclick="toggleChat()"> <i class="fa-solid fa-comments"></i></div>
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
 
 <!-- CHAT BOX -->
 <div class="chat-box" id="chatBox">
@@ -774,6 +779,7 @@ marquee p{
 
   <input type="text" id="chatInput" placeholder="Type message..." onkeypress="sendMsg(event)">
 </div>
+
 
   
 
@@ -861,7 +867,7 @@ marquee p{
     © 2026 Swami Cyber Cafe | All Rights Reserved
   </footer>
 
-</body>
+
 
 
 
@@ -893,6 +899,7 @@ function openSlide(i){
     behavior: "smooth"
   });
 }
+
 /* OPEN CLOSE CHAT */
 function toggleChat(){
   let box = document.getElementById("chatBox");
@@ -943,12 +950,14 @@ function getReply(msg){
   if(msg.includes("location"))
     return "📍 Chandur Bazar, Near Bus Stand";
 
+
   return "👉 Please contact on WhatsApp 😊";
 }
+  
 </script>
 
 
 
   
-
+</body>
 </html>
