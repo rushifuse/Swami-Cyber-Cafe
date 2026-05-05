@@ -93,23 +93,38 @@
     .hero{
       background:linear-gradient(135deg, #ff6f00, #ffd700);
       color:#fff;
-      padding:90px 20px;
-      text-align:center;
+      padding:10px 20px;
+      
       border-bottom-left-radius:50px;
       border-bottom-right-radius:50px;
       box-shadow:0 10px 30px rgba(0,0,0,0.2);
     }
+
+.hero-container{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  text-align:center;
+}
+
+.hero-text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
     .logo{
   width:130px;
   height:130px;
   border-radius:50%;
-  margin-bottom:20px;
+  margin-bottom:0px;
   box-shadow:0 5px 20px rgba(0,0,0,0.3);
   border:4px solid #fff;
   background:#fff;
 }
     .hero h1{
       font-size:42px;
+      display-flex:left;
       margin-bottom:10px;
       letter-spacing:1px;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
@@ -366,10 +381,15 @@ marquee p{
 
   <!-- HERO -->
   <section class="hero">
-     <img src="logo.png" alt="Swami Cyber Cafe Logo" class="logo">
-    <h1>Swami Cyber Cafe</h1>
-    <p>All Online, Digital & Government Services Under One Roof</p>
-  </section>
+  <div class="hero-container">
+    <img src="logo.png" alt="Swami Cyber Cafe Logo" class="logo">
+
+    <div class="hero-text">
+      <h1>Swami Cyber Cafe</h1>
+      <p>All Online, Digital & Government Services Under One Roof</p>
+    </div>
+  </div>
+</section>
 
 
   <section class="section">
